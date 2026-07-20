@@ -487,14 +487,12 @@ export default function TrollslandeApp() {
     const configLandscapes = config.selectedLandscapes ?? selectedLandscapes;
     const configMunicipalities = config.selectedMunicipalities ?? selectedMunicipalities;
 
-    const fetchOneBatch = async (speciesName, year) => {
-      const yearStart = `${year}-01-01`;
-      const yearEnd = `${year}-12-31`;
+    const fetchOneBatch = async (speciesName, startDate, endDate) => {
       const filters = [
         "datasetName='Artportalen'",
         `vernacularName='${escapeCql(speciesName)}'`,
-        `endDate >= '${yearStart}'`,
-        `endDate <= '${yearEnd}'`
+        `endDate >= '${startDate}'`,
+        `endDate <= '${endDate}'`
       ];
       if (configLandscapes.length > 0) filters.push(`(${configLandscapes.map((name) => `province='${escapeCql(name)}'`).join(" OR ")})`);
       if (configMunicipalities.length > 0) filters.push(`(${configMunicipalities.map((name) => `municipality='${escapeCql(name)}'`).join(" OR ")})`);
@@ -519,11 +517,31 @@ export default function TrollslandeApp() {
     const years = [];
     for (let year = startYear; year <= endYear; year += 1) years.push(year);
 
+    // Fetch strategy: for a single species (or whenever a month is chosen) we
+    // split the query by calendar month so each request stays well under the
+    // API's 5000-row cap — important for very common species such as birds.
+    // Multi-species group selections stay per-year to keep the request count sane.
+    const configMonth = config.month ?? month;
+    const singleSpecies = speciesList.length === 1;
+    const monthRange = (year, m) => {
+      const mm = String(m).padStart(2, "0");
+      const lastDay = new Date(year, m, 0).getDate();
+      return [`${year}-${mm}-01`, `${year}-${mm}-${String(lastDay).padStart(2, "0")}`];
+    };
     const featureBatches = [];
     for (const speciesName of speciesList) {
       for (const year of years) {
-        const batch = await fetchOneBatch(speciesName, year);
-        featureBatches.push(...batch);
+        if (configMonth) {
+          const [s, e] = monthRange(year, Number(configMonth));
+          featureBatches.push(...(await fetchOneBatch(speciesName, s, e)));
+        } else if (singleSpecies) {
+          for (let m = 1; m <= 12; m += 1) {
+            const [s, e] = monthRange(year, m);
+            featureBatches.push(...(await fetchOneBatch(speciesName, s, e)));
+          }
+        } else {
+          featureBatches.push(...(await fetchOneBatch(speciesName, `${year}-01-01`, `${year}-12-31`)));
+        }
       }
     }
 
@@ -703,7 +721,10 @@ export default function TrollslandeApp() {
     }
 
     const zoomWords = ["zooma", "summa", "sommar", "dimma"];
-    const zoomPrefix = zoomWords.find((word) => normalizedTranscript.startsWith(word));
+    // Only treat these as a zoom command when the word stands alone or is
+    // followed by an argument, so a species like "Sommargylling" (starts with
+    // "sommar") isn't mistaken for a zoom command.
+    const zoomPrefix = zoomWords.find((word) => normalizedTranscript === word || normalizedTranscript.startsWith(word + " "));
     if (zoomPrefix) {
       if (currentViewModeRef.current !== "karta") {
         setStatusText("Visa först kartan innan du zoomar.");
