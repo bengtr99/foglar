@@ -24,7 +24,7 @@ const capitalizeFirst = (value) => {
 const speciesAwareCell = (row, key) => (key === "species" ? capitalizeFirst(row[key]) : row[key]);
 
 const labelForViewMode = (mode) =>
-  mode === "graf" ? "Tid per Ã¥r"
+  mode === "graf" ? "Tid per år"
     : mode === "tid" ? "Tid"
     : mode === "fenologi" ? "Fenologi"
     : mode === "landskap" ? "Landskap"
@@ -166,46 +166,46 @@ export default function TrollslandeApp() {
   const speciesOptions = [...allSpecies];
 
   const landscapeOptions = [
-    "Blekinge", "BohuslÃ¤n", "Dalarna", "Dalsland", "Gotland", "GÃ¤strikland", "Halland", "HÃ¤lsingland",
-    "HÃ¤rjedalen", "JÃ¤mtland", "Lappland", "Medelpad", "Norrbotten", "NÃ¤rke", "SkÃ¥ne", "SmÃ¥land",
-    "SÃ¶dermanland", "Uppland", "VÃ¤rmland", "VÃ¤sterbotten", "VÃ¤stergÃ¶tland", "VÃ¤stmanland", "Ã…ngermanland",
-    "Ã–land", "Ã–stergÃ¶tland"
+    "Blekinge", "Bohuslän", "Dalarna", "Dalsland", "Gotland", "Gästrikland", "Halland", "Hälsingland",
+    "Härjedalen", "Jämtland", "Lappland", "Medelpad", "Norrbotten", "Närke", "Skåne", "Småland",
+    "Södermanland", "Uppland", "Värmland", "Västerbotten", "Västergötland", "Västmanland", "Ångermanland",
+    "Öland", "Östergötland"
   ].sort((a, b) => a.localeCompare(b, "sv"));
 
   const municipalityOptions = [
-    "Ale", "AlingsÃ¥s", "Alvesta", "Aneby", "Arboga", "Arjeplog", "Arvidsjaur", "Arvika", "Askersund", "Avesta",
-    "Bengtsfors", "Berg", "Bjurholm", "Bjuv", "Boden", "Bollebygd", "BollnÃ¤s", "Borgholm", "BorlÃ¤nge", "BorÃ¥s",
-    "Botkyrka", "Boxholm", "BromÃ¶lla", "BrÃ¤cke", "BurlÃ¶v", "BÃ¥stad", "Dals-Ed", "Danderyd", "Degerfors", "Dorotea",
-    "Eda", "EkerÃ¶", "EksjÃ¶", "Emmaboda", "EnkÃ¶ping", "Eskilstuna", "EslÃ¶v", "Essunga", "Fagersta", "Falkenberg",
-    "FalkÃ¶ping", "Falun", "Filipstad", "FinspÃ¥ng", "Flen", "Forshaga", "FÃ¤rgelanda", "Gagnef", "Gislaved", "Gnesta",
-    "GnosjÃ¶", "Gotland", "Grums", "GrÃ¤storp", "GullspÃ¥ng", "GÃ¤llivare", "GÃ¤vle", "GÃ¶teborg", "GÃ¶tene", "Habo",
-    "Hagfors", "Hallsberg", "Hallstahammar", "Halmstad", "HammarÃ¶", "Haninge", "Haparanda", "Heby", "Hedemora", "Helsingborg",
-    "Herrljunga", "Hjo", "Hofors", "Huddinge", "Hudiksvall", "Hultsfred", "Hylte", "HÃ¥bo", "HÃ¤llefors", "HÃ¤rjedalen",
-    "HÃ¤rnÃ¶sand", "HÃ¤rryda", "HÃ¤ssleholm", "HÃ¶ganÃ¤s", "HÃ¶gsby", "HÃ¶rby", "HÃ¶Ã¶r", "Jokkmokk", "JÃ¤rfÃ¤lla", "JÃ¶nkÃ¶ping",
+    "Ale", "Alingsås", "Alvesta", "Aneby", "Arboga", "Arjeplog", "Arvidsjaur", "Arvika", "Askersund", "Avesta",
+    "Bengtsfors", "Berg", "Bjurholm", "Bjuv", "Boden", "Bollebygd", "Bollnäs", "Borgholm", "Borlänge", "Borås",
+    "Botkyrka", "Boxholm", "Bromölla", "Bräcke", "Burlöv", "Båstad", "Dals-Ed", "Danderyd", "Degerfors", "Dorotea",
+    "Eda", "Ekerö", "Eksjö", "Emmaboda", "Enköping", "Eskilstuna", "Eslöv", "Essunga", "Fagersta", "Falkenberg",
+    "Falköping", "Falun", "Filipstad", "Finspång", "Flen", "Forshaga", "Färgelanda", "Gagnef", "Gislaved", "Gnesta",
+    "Gnosjö", "Gotland", "Grums", "Grästorp", "Gullspång", "Gällivare", "Gävle", "Göteborg", "Götene", "Habo",
+    "Hagfors", "Hallsberg", "Hallstahammar", "Halmstad", "Hammarö", "Haninge", "Haparanda", "Heby", "Hedemora", "Helsingborg",
+    "Herrljunga", "Hjo", "Hofors", "Huddinge", "Hudiksvall", "Hultsfred", "Hylte", "Håbo", "Hällefors", "Härjedalen",
+    "Härnösand", "Härryda", "Hässleholm", "Höganäs", "Högsby", "Hörby", "Höör", "Jokkmokk", "Järfälla", "Jönköping",
     "Kalix", "Kalmar", "Karlsborg", "Karlshamn", "Karlskoga", "Karlskrona", "Karlstad", "Katrineholm", "Kil", "Kinda",
-    "Kiruna", "Klippan", "Knivsta", "Kramfors", "Kristianstad", "Kristinehamn", "Krokom", "Kumla", "Kungsbacka", "KungsÃ¶r",
-    "KungÃ¤lv", "KÃ¤vlinge", "KÃ¶ping", "Laholm", "Landskrona", "LaxÃ¥", "Lekeberg", "Leksand", "Lerum", "Lessebo",
-    "LidingÃ¶", "LidkÃ¶ping", "Lilla Edet", "Lindesberg", "LinkÃ¶ping", "Ljungby", "Ljusdal", "Lomma", "Ludvika", "LuleÃ¥",
-    "Lund", "Lycksele", "Lysekil", "MalmÃ¶", "Malung-SÃ¤len", "MalÃ¥", "Mariestad", "Mark", "Markaryd", "Mellerud",
-    "MjÃ¶lby", "Mora", "Motala", "MullsjÃ¶", "Munkedal", "Munkfors", "MÃ¶lndal", "MÃ¶nsterÃ¥s", "MÃ¶rbylÃ¥nga", "Nacka",
-    "Nora", "Norberg", "Nordanstig", "Nordmaling", "NorrkÃ¶ping", "NorrtÃ¤lje", "NorsjÃ¶", "Nybro", "Nykvarn", "NykÃ¶ping",
-    "NynÃ¤shamn", "NÃ¤ssjÃ¶", "Ockelbo", "OlofstrÃ¶m", "Orsa", "Orust", "Osby", "Oskarshamn", "OvanÃ¥ker", "OxelÃ¶sund",
-    "Pajala", "Partille", "Perstorp", "PiteÃ¥", "Ragunda", "Robertsfors", "Ronneby", "RÃ¤ttvik", "Sala", "Salem",
-    "Sandviken", "Sigtuna", "Simrishamn", "SjÃ¶bo", "Skara", "SkellefteÃ¥", "Skinnskatteberg", "Skurup", "SkÃ¶vde", "Smedjebacken",
-    "SollefteÃ¥", "Sollentuna", "Solna", "Sorsele", "SotenÃ¤s", "Staffanstorp", "Stenungsund", "Stockholm", "Storfors", "Storuman",
-    "StrÃ¤ngnÃ¤s", "StrÃ¶mstad", "StrÃ¶msund", "Sundbyberg", "Sundsvall", "Sunne", "Surahammar", "SvalÃ¶v", "Svedala", "Svenljunga",
-    "SÃ¤ffle", "SÃ¤ter", "SÃ¤vsjÃ¶", "SÃ¶derhamn", "SÃ¶derkÃ¶ping", "SÃ¶dertÃ¤lje", "SÃ¶lvesborg", "Tanum", "Tibro", "Tidaholm",
-    "Tierp", "TimrÃ¥", "Tingsryd", "TjÃ¶rn", "Tomelilla", "Torsby", "TorsÃ¥s", "Tranemo", "TranÃ¥s", "Trelleborg",
-    "TrollhÃ¤ttan", "Trosa", "TyresÃ¶", "TÃ¤by", "TÃ¶reboda", "Uddevalla", "Ulricehamn", "UmeÃ¥", "Upplands VÃ¤sby", "Upplands-Bro",
+    "Kiruna", "Klippan", "Knivsta", "Kramfors", "Kristianstad", "Kristinehamn", "Krokom", "Kumla", "Kungsbacka", "Kungsör",
+    "Kungälv", "Kävlinge", "Köping", "Laholm", "Landskrona", "Laxå", "Lekeberg", "Leksand", "Lerum", "Lessebo",
+    "Lidingö", "Lidköping", "Lilla Edet", "Lindesberg", "Linköping", "Ljungby", "Ljusdal", "Lomma", "Ludvika", "Luleå",
+    "Lund", "Lycksele", "Lysekil", "Malmö", "Malung-Sälen", "Malå", "Mariestad", "Mark", "Markaryd", "Mellerud",
+    "Mjölby", "Mora", "Motala", "Mullsjö", "Munkedal", "Munkfors", "Mölndal", "Mönsterås", "Mörbylånga", "Nacka",
+    "Nora", "Norberg", "Nordanstig", "Nordmaling", "Norrköping", "Norrtälje", "Norsjö", "Nybro", "Nykvarn", "Nyköping",
+    "Nynäshamn", "Nässjö", "Ockelbo", "Olofström", "Orsa", "Orust", "Osby", "Oskarshamn", "Ovanåker", "Oxelösund",
+    "Pajala", "Partille", "Perstorp", "Piteå", "Ragunda", "Robertsfors", "Ronneby", "Rättvik", "Sala", "Salem",
+    "Sandviken", "Sigtuna", "Simrishamn", "Sjöbo", "Skara", "Skellefteå", "Skinnskatteberg", "Skurup", "Skövde", "Smedjebacken",
+    "Sollefteå", "Sollentuna", "Solna", "Sorsele", "Sotenäs", "Staffanstorp", "Stenungsund", "Stockholm", "Storfors", "Storuman",
+    "Strängnäs", "Strömstad", "Strömsund", "Sundbyberg", "Sundsvall", "Sunne", "Surahammar", "Svalöv", "Svedala", "Svenljunga",
+    "Säffle", "Säter", "Sävsjö", "Söderhamn", "Söderköping", "Södertälje", "Sölvesborg", "Tanum", "Tibro", "Tidaholm",
+    "Tierp", "Timrå", "Tingsryd", "Tjörn", "Tomelilla", "Torsby", "Torsås", "Tranemo", "Tranås", "Trelleborg",
+    "Trollhättan", "Trosa", "Tyresö", "Täby", "Töreboda", "Uddevalla", "Ulricehamn", "Umeå", "Upplands Väsby", "Upplands-Bro",
     "Uppsala", "Uppvidinge", "Vadstena", "Vaggeryd", "Valdemarsvik", "Vallentuna", "Vansbro", "Vara", "Varberg", "Vaxholm",
-    "Vellinge", "Vetlanda", "Vilhelmina", "Vimmerby", "Vindeln", "VingÃ¥ker", "VÃ¥rgÃ¥rda", "VÃ¤nersborg", "VÃ¤nnÃ¤s", "VÃ¤rmdÃ¶",
-    "VÃ¤rnamo", "VÃ¤stervik", "VÃ¤sterÃ¥s", "VÃ¤xjÃ¶", "Ydre", "Ystad", "Ã…mÃ¥l", "Ã…nge", "Ã…re", "Ã…rjÃ¤ng", "Ã…sele",
-    "Ã…storp", "Ã…tvidaberg", "Ã„lmhult", "Ã„lvdalen", "Ã„lvkarleby", "Ã„lvsbyn", "Ã„ngelholm", "Ã–ckerÃ¶", "Ã–deshÃ¶g", "Ã–rebro",
-    "Ã–rkelljunga", "Ã–rnskÃ¶ldsvik", "Ã–stersund", "Ã–sterÃ¥ker", "Ã–sthammar", "Ã–stra GÃ¶inge", "Ã–verkalix", "Ã–vertorneÃ¥"
+    "Vellinge", "Vetlanda", "Vilhelmina", "Vimmerby", "Vindeln", "Vingåker", "Vårgårda", "Vänersborg", "Vännäs", "Värmdö",
+    "Värnamo", "Västervik", "Västerås", "Växjö", "Ydre", "Ystad", "Åmål", "Ånge", "Åre", "Årjäng", "Åsele",
+    "Åstorp", "Åtvidaberg", "Älmhult", "Älvdalen", "Älvkarleby", "Älvsbyn", "Ängelholm", "Öckerö", "Ödeshög", "Örebro",
+    "Örkelljunga", "Örnsköldsvik", "Östersund", "Österåker", "Östhammar", "Östra Göinge", "Överkalix", "Övertorneå"
   ].sort((a, b) => a.localeCompare(b, "sv"));
 
   const monthOptions = [
-    { value: "", label: "Alla mÃ¥nader" },
+    { value: "", label: "Alla månader" },
     { value: "01", label: "Januari" },
     { value: "02", label: "Februari" },
     { value: "03", label: "Mars" },
@@ -292,7 +292,7 @@ export default function TrollslandeApp() {
   const [loading, setLoading] = useState(false);
   const [resultCount, setResultCount] = useState(0);
   const [results, setResults] = useState([]);
-  const [statusText, setStatusText] = useState("VÃ¤lj art och filter. Klicka sedan pÃ¥ en rapportknapp.");
+  const [statusText, setStatusText] = useState("Välj art och filter. Klicka sedan på en rapportknapp.");
   const [sortField, setSortField] = useState("date");
   const [sortDirection, setSortDirection] = useState("asc");
   const voiceEnabled = !!SpeechRecognitionApi; // mobile: microphone mode is always on when the browser supports it
@@ -318,9 +318,9 @@ export default function TrollslandeApp() {
 
   const normalizeVoiceText = (value) => String(value || "")
     .toLowerCase()
-    .replaceAll("Ã¥", "a")
-    .replaceAll("Ã¤", "a")
-    .replaceAll("Ã¶", "o")
+    .replaceAll("å", "a")
+    .replaceAll("ä", "a")
+    .replaceAll("ö", "o")
     .replace(/[^a-z0-9\s-]/g, " ")
     .replace(/\s+/g, " ")
     .trim();
@@ -400,18 +400,18 @@ export default function TrollslandeApp() {
 
   const mapFeatureToRow = (feature) => {
     const p = feature?.properties || {};
-    const quantityRaw = p.organismQuantity ?? p.individualCount ?? p.organismQuantityInt ?? "â€”";
+    const quantityRaw = p.organismQuantity ?? p.individualCount ?? p.organismQuantityInt ?? "—";
     return {
       occurrenceId: p.occurrenceId || "",
-      species: p.vernacularName || "â€”",
+      species: p.vernacularName || "—",
       date: (p.endDate || p.startDate || "").slice(0, 10),
-      province: p.province || "â€”",
-      municipality: p.municipality || "â€”",
-      locality: p.locality || p.verbatimLocality || p.locationRemarks || "â€”",
+      province: p.province || "—",
+      municipality: p.municipality || "—",
+      locality: p.locality || p.verbatimLocality || p.locationRemarks || "—",
       quantity: quantityRaw,
-      lifeStage: p.lifeStage || "â€”",
-      activity: p.activity || p.behavior || p.reproductiveCondition || "â€”",
-      recordedBy: p.recordedBy || "â€”",
+      lifeStage: p.lifeStage || "—",
+      activity: p.activity || p.behavior || p.reproductiveCondition || "—",
+      recordedBy: p.recordedBy || "—",
       latitude: typeof p.decimalLatitude === "number" ? p.decimalLatitude : null,
       longitude: typeof p.decimalLongitude === "number" ? p.decimalLongitude : null,
       isNeverFoundObservation: Boolean(p.isNeverFoundObservation),
@@ -437,7 +437,7 @@ export default function TrollslandeApp() {
   const parseQuantityValue = (value) => {
     if (typeof value === "number" && Number.isFinite(value)) return value;
     const raw = String(value ?? "").trim();
-    if (!raw || raw === "â€”") return Number.NEGATIVE_INFINITY;
+    if (!raw || raw === "—") return Number.NEGATIVE_INFINITY;
     const match = raw.replace(",", ".").match(/-?\d+(?:\.\d+)?/);
     return match ? Number(match[0]) : Number.NEGATIVE_INFINITY;
   };
@@ -547,7 +547,7 @@ export default function TrollslandeApp() {
     const activeConfig = config || {};
     const selectedSpeciesValue = activeConfig.selectedSpecies ?? selectedSpecies;
     if (!selectedSpeciesValue) {
-      setStatusText("VÃ¤lj fÃ¶rst art.");
+      setStatusText("Välj först art.");
       return;
     }
     setLoading(true);
@@ -559,10 +559,10 @@ export default function TrollslandeApp() {
       const finalRows = mode === "lista" ? defaultSortRows(rows, selectedSpeciesValue) : rows;
       setResults(finalRows);
       setResultCount(finalRows.length);
-      setStatusText(`Klar. ${label} skapad frÃ¥n ${finalRows.length} observationer fÃ¶r ${selectedSpeciesValue}.`);
+      setStatusText(`Klar. ${label} skapad från ${finalRows.length} observationer för ${selectedSpeciesValue}.`);
       showReport();
     } catch (error) {
-      setStatusText(`Kunde inte hÃ¤mta data: ${error.message}`);
+      setStatusText(`Kunde inte hämta data: ${error.message}`);
       setResults([]);
       setResultCount(0);
     } finally {
@@ -644,10 +644,10 @@ export default function TrollslandeApp() {
 
     const normalizedTranscript = normalizeVoiceText(cleanedTranscript);
 
-    // "BakÃ¥t" / "Tillbaka" â†’ same as the Back button (return to the selection screen).
+    // "Bakåt" / "Tillbaka" → same as the Back button (return to the selection screen).
     if (normalizedTranscript.includes("bakat") || normalizedTranscript.includes("tillbaka")) {
       goBack();
-      setStatusText("Tillbaka till vÃ¤ljaren.");
+      setStatusText("Tillbaka till väljaren.");
       return;
     }
 
@@ -665,7 +665,7 @@ export default function TrollslandeApp() {
     }
     if (normalizedTranscript.includes("ta bort manad")) {
       nextMonth = "";
-      changed.push("Ta bort mÃ¥nad");
+      changed.push("Ta bort månad");
     }
 
     const sortLabels = {
@@ -695,7 +695,7 @@ export default function TrollslandeApp() {
           setResults(sortRows(currentResultsRef.current, sortFieldName, nextDirection));
           changed.push(`Sortera ${bestSortLabel} ${nextDirection === "asc" ? "stigande" : "fallande"}`);
         } else {
-          setStatusText("Visa fÃ¶rst en lista innan du sorterar.");
+          setStatusText("Visa först en lista innan du sorterar.");
           return;
         }
         return;
@@ -706,7 +706,7 @@ export default function TrollslandeApp() {
     const zoomPrefix = zoomWords.find((word) => normalizedTranscript.startsWith(word));
     if (zoomPrefix) {
       if (currentViewModeRef.current !== "karta") {
-        setStatusText("Visa fÃ¶rst kartan innan du zoomar.");
+        setStatusText("Visa först kartan innan du zoomar.");
         return;
       }
 
@@ -716,7 +716,7 @@ export default function TrollslandeApp() {
         if (initialMapBoundsRef.current) {
           setMapTargetBounds(initialMapBoundsRef.current);
           setMapViewportToken((prev) => prev + 1);
-          setStatusText("Kartan zoomad ut till sÃ¶kningens fyndomrÃ¥de.");
+          setStatusText("Kartan zoomad ut till sökningens fyndområde.");
         }
         return;
       }
@@ -746,7 +746,7 @@ export default function TrollslandeApp() {
         if (zoomMapToRows(rows, `Kartan zoomad till ${landscapeMatch}.`)) return;
       }
 
-      setStatusText("Kunde inte hitta nÃ¥got landskap eller nÃ¥gon kommun att zooma till.");
+      setStatusText("Kunde inte hitta något landskap eller någon kommun att zooma till.");
       return;
     }
 
@@ -754,7 +754,7 @@ export default function TrollslandeApp() {
     // report name (when "Rapport" was misheard or left out).
     const matchReport = (v) => {
       if (v.includes("lista")) return { mode: "lista", label: "Lista" };
-      if (v.includes("tid per ar") || v.includes("tid perar")) return { mode: "graf", label: "Tid per Ã¥r" };
+      if (v.includes("tid per ar") || v.includes("tid perar")) return { mode: "graf", label: "Tid per år" };
       if (v.includes("fenologi")) return { mode: "fenologi", label: "Fenologi" };
       if (v.includes("arter")) return { mode: "arter", label: "Arter" };
       if (v.includes("kommun")) return { mode: "kommun", label: "Kommun" };
@@ -766,7 +766,7 @@ export default function TrollslandeApp() {
 
     // Command keywords, including common mishearings as synonyms. \b avoids
     // matching e.g. "art" inside "apart".
-    const KW = "art|arten|hart|hat|allt|landskap|kommun|tid\\s+frÃ¥n|tid\\s+fran|till|mÃ¥nad|manad|rapport|rapporter|raport|apart|report";
+    const KW = "art|arten|hart|hat|allt|landskap|kommun|tid\\s+från|tid\\s+fran|till|månad|manad|rapport|rapporter|raport|apart|report";
     const regex = new RegExp(`\\b(${KW})\\s+(.+?)(?=\\s+(?:${KW})\\b|$)`, "gi");
     let match;
     let anyKeywordMatched = false;
@@ -812,7 +812,7 @@ export default function TrollslandeApp() {
         const yearMatch = value.replace(/\D/g, "").match(/(19|20)\d{2}/);
         if (yearMatch) {
           nextFromYear = yearMatch[0];
-          changed.push(`FrÃ¥n Ã¥r = ${yearMatch[0]}`);
+          changed.push(`Från år = ${yearMatch[0]}`);
         }
         continue;
       }
@@ -821,7 +821,7 @@ export default function TrollslandeApp() {
         const yearMatch = value.replace(/\D/g, "").match(/(19|20)\d{2}/);
         if (yearMatch) {
           nextToYear = yearMatch[0];
-          changed.push(`Till Ã¥r = ${yearMatch[0]}`);
+          changed.push(`Till år = ${yearMatch[0]}`);
         }
         continue;
       }
@@ -832,7 +832,7 @@ export default function TrollslandeApp() {
           const monthEntry = monthOptions.find((item) => item.label === monthMatch);
           if (monthEntry) {
             nextMonth = monthEntry.value;
-            changed.push(`MÃ¥nad = ${monthEntry.label}`);
+            changed.push(`Månad = ${monthEntry.label}`);
           }
         }
         continue;
@@ -845,13 +845,13 @@ export default function TrollslandeApp() {
     }
 
     // Fallback when no keyword was recognised: a bare report name (matched
-    // exactly, so "Tid" isn't confused with the species "Tidig mosaikslÃ¤nda"),
+    // exactly, so "Tid" isn't confused with the species "Tidig mosaikslända"),
     // otherwise a bare species name.
     if (!anyKeywordMatched) {
       const bare = normalizedTranscript;
       const bareReport =
         (bare === "lista" || bare === "listan") ? { mode: "lista", label: "Lista" }
-        : (bare === "tid per ar" || bare === "tid perar") ? { mode: "graf", label: "Tid per Ã¥r" }
+        : (bare === "tid per ar" || bare === "tid perar") ? { mode: "graf", label: "Tid per år" }
         : (bare === "tid" || bare === "tiden") ? { mode: "tid", label: "Tid" }
         : (bare === "fenologi" || bare === "fenologin") ? { mode: "fenologi", label: "Fenologi" }
         : (bare === "kommun" || bare === "kommunen") ? { mode: "kommun", label: "Kommun" }
@@ -897,7 +897,7 @@ export default function TrollslandeApp() {
         if (currentResultsRef.current.length > 0) {
           exportToExcel(currentResultsRef.current, currentViewModeRef.current);
         } else {
-          setStatusText("Visa fÃ¶rst en lista innan du sÃ¤ger Exportera till Excel.");
+          setStatusText("Visa först en lista innan du säger Exportera till Excel.");
         }
       } else {
         await exportToPdf();
@@ -906,7 +906,7 @@ export default function TrollslandeApp() {
     }
 
     if (changed.length > 0) {
-      setStatusText(`RÃ¶stkommando fÃ¶rstÃ¥tt: ${changed.join(", ")}`);
+      setStatusText(`Röstkommando förstått: ${changed.join(", ")}`);
     }
   };
 
@@ -921,8 +921,8 @@ export default function TrollslandeApp() {
     if (!Array.isArray(rowsArg) || !rowsArg.length || modeArg !== "lista") return;
     const includeSpeciesColumn = new Set(rowsArg.map((row) => row.species).filter(Boolean)).size > 1;
     const header = includeSpeciesColumn
-      ? ["Art", "Datum", "Landskap", "Kommun", "Fyndplats", "Antal", "Ã…lder/stadium", "Aktivitet", "ObservatÃ¶r"]
-      : ["Datum", "Landskap", "Kommun", "Fyndplats", "Antal", "Ã…lder/stadium", "Aktivitet", "ObservatÃ¶r"];
+      ? ["Art", "Datum", "Landskap", "Kommun", "Fyndplats", "Antal", "Ålder/stadium", "Aktivitet", "Observatör"]
+      : ["Datum", "Landskap", "Kommun", "Fyndplats", "Antal", "Ålder/stadium", "Aktivitet", "Observatör"];
     const body = rowsArg.map((row) => includeSpeciesColumn
       ? [capitalizeFirst(row.species), row.date, row.province, row.municipality, row.locality, row.quantity, row.lifeStage, row.activity, row.recordedBy]
       : [row.date, row.province, row.municipality, row.locality, row.quantity, row.lifeStage, row.activity, row.recordedBy]);
@@ -940,7 +940,7 @@ export default function TrollslandeApp() {
   const exportToPdf = async () => {
     const node = reportRef.current;
     if (!node || currentResultsRef.current.length === 0) {
-      setStatusText("Visa fÃ¶rst en rapport innan du exporterar som PDF.");
+      setStatusText("Visa först en rapport innan du exporterar som PDF.");
       return;
     }
     try {
@@ -958,8 +958,8 @@ export default function TrollslandeApp() {
       const pageHeight = pdf.internal.pageSize.getHeight();
       const margin = 24;
       const monthLabel = month ? (monthOptions.find((m) => m.value === month)?.label || "") : "";
-      const period = `${fromYear}${toYear !== fromYear ? `â€“${toYear}` : ""}${monthLabel ? `, ${monthLabel}` : ""}`;
-      const title = `${labelForViewMode(currentViewModeRef.current)} â€“ ${selectedSpecies} (${period})`;
+      const period = `${fromYear}${toYear !== fromYear ? `–${toYear}` : ""}${monthLabel ? `, ${monthLabel}` : ""}`;
+      const title = `${labelForViewMode(currentViewModeRef.current)} – ${selectedSpecies} (${period})`;
       pdf.setFontSize(13);
       pdf.text(title, margin, margin + 6);
       const headerOffset = margin + 18;
@@ -1054,22 +1054,22 @@ export default function TrollslandeApp() {
     recognition.onerror = (event) => {
       setVoiceListening(false);
       shouldRestartRef.current = false; // never tight-loop on errors
-      const err = event?.error || "okÃ¤nt";
+      const err = event?.error || "okänt";
       if (err === "no-speech" || err === "aborted") {
-        setStatusText('HÃ¶rde inget ljud. Tryck pÃ¥ mikrofon-raden och sÃ¤g t.ex. "Rapport Tid".');
+        setStatusText('Hörde inget ljud. Tryck på mikrofon-raden och säg t.ex. "Rapport Tid".');
       } else if (err === "network") {
-        setStatusText("RÃ¶stfel: taligenkÃ¤nningen nÃ¥r inte internet (krÃ¤ver uppkoppling och Chrome).");
+        setStatusText("Röstfel: taligenkänningen når inte internet (kräver uppkoppling och Chrome).");
       } else if (err === "not-allowed" || err === "service-not-allowed") {
-        setStatusText("MikrofonÃ¥tkomst nekad. TillÃ¥t mikrofonen i webblÃ¤saren och ladda om sidan.");
+        setStatusText("Mikrofonåtkomst nekad. Tillåt mikrofonen i webbläsaren och ladda om sidan.");
       } else if (err === "audio-capture") {
-        setStatusText("Ingen mikrofon hittades. Kontrollera att en mikrofon Ã¤r inkopplad och vald.");
+        setStatusText("Ingen mikrofon hittades. Kontrollera att en mikrofon är inkopplad och vald.");
       } else {
-        setStatusText(`RÃ¶stfel: ${err}. Tryck pÃ¥ mikrofon-raden fÃ¶r att fÃ¶rsÃ¶ka igen.`);
+        setStatusText(`Röstfel: ${err}. Tryck på mikrofon-raden för att försöka igen.`);
       }
     };
     recognition.onresult = async (event) => {
       // Continuous recognition keeps every past result in event.results, so only
-      // handle the newly finalised result(s) â€” otherwise each new command gets
+      // handle the newly finalised result(s) — otherwise each new command gets
       // concatenated onto the whole history and stops matching.
       let transcript = "";
       for (let i = event.resultIndex; i < event.results.length; i += 1) {
@@ -1174,21 +1174,21 @@ export default function TrollslandeApp() {
   const landscapeSeries = useMemo(() => {
     if (viewMode !== "landskap" || results.length === 0) return [];
     const counts = new Map();
-    results.forEach((row) => counts.set(row.province || "â€”", (counts.get(row.province || "â€”") || 0) + 1));
+    results.forEach((row) => counts.set(row.province || "—", (counts.get(row.province || "—") || 0) + 1));
     return Array.from(counts.entries()).map(([name, count]) => ({ name, count })).sort((a, b) => b.count - a.count);
   }, [results, viewMode]);
 
   const municipalitySeries = useMemo(() => {
     if (viewMode !== "kommun" || results.length === 0) return [];
     const counts = new Map();
-    results.forEach((row) => counts.set(row.municipality || "â€”", (counts.get(row.municipality || "â€”") || 0) + 1));
+    results.forEach((row) => counts.set(row.municipality || "—", (counts.get(row.municipality || "—") || 0) + 1));
     return Array.from(counts.entries()).map(([name, count]) => ({ name, count })).sort((a, b) => b.count - a.count);
   }, [results, viewMode]);
 
   const speciesSeries = useMemo(() => {
     if (viewMode !== "arter" || results.length === 0) return [];
     const counts = new Map();
-    results.forEach((row) => counts.set(row.species || "â€”", (counts.get(row.species || "â€”") || 0) + 1));
+    results.forEach((row) => counts.set(row.species || "—", (counts.get(row.species || "—") || 0) + 1));
     return Array.from(counts.entries()).map(([name, count]) => ({ name: capitalizeFirst(name), count })).sort((a, b) => b.count - a.count);
   }, [results, viewMode]);
 
@@ -1228,7 +1228,7 @@ export default function TrollslandeApp() {
     <div style={styles.section}>
       <div style={styles.label}>{title}</div>
       <div style={styles.tagBox}>
-        {items.length === 0 ? emptyText : <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>{items.map((item) => <button key={item} onClick={() => onRemove(item)} style={styles.tag}>{item} Ã—</button>)}</div>}
+        {items.length === 0 ? emptyText : <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>{items.map((item) => <button key={item} onClick={() => onRemove(item)} style={styles.tag}>{item} ×</button>)}</div>}
       </div>
     </div>
   );
@@ -1241,9 +1241,9 @@ export default function TrollslandeApp() {
         { key: "municipality", label: "Kommun", width: "90px" },
         { key: "locality", label: "Fyndplats", width: "240px" },
         { key: "quantity", label: "Antal", width: "50px" },
-        { key: "lifeStage", label: "Ã…lder/stadium", width: "90px" },
+        { key: "lifeStage", label: "Ålder/stadium", width: "90px" },
         { key: "activity", label: "Aktivitet", width: "100px" },
-        { key: "recordedBy", label: "ObservatÃ¶r", width: "180px" }
+        { key: "recordedBy", label: "Observatör", width: "180px" }
       ]
     : [
         { key: "date", label: "Datum", width: "70px" },
@@ -1251,9 +1251,9 @@ export default function TrollslandeApp() {
         { key: "municipality", label: "Kommun", width: "90px" },
         { key: "locality", label: "Fyndplats", width: "240px" },
         { key: "quantity", label: "Antal", width: "50px" },
-        { key: "lifeStage", label: "Ã…lder/stadium", width: "90px" },
+        { key: "lifeStage", label: "Ålder/stadium", width: "90px" },
         { key: "activity", label: "Aktivitet", width: "100px" },
-        { key: "recordedBy", label: "ObservatÃ¶r", width: "180px" }
+        { key: "recordedBy", label: "Observatör", width: "180px" }
       ];
 
   const monthCount = Math.max(1, activeChartBlocks.length / 4);
@@ -1338,22 +1338,22 @@ export default function TrollslandeApp() {
       <div style={styles.shell}>
         <div style={styles.topBar}>
           <div style={{ display: "flex", alignItems: "center", gap: 14, minWidth: 0 }}>
-            <h1 style={{ margin: 0, fontSize: 22 }}>FÃ¥glar</h1>
+            <h1 style={{ margin: 0, fontSize: 22 }}>Fåglar</h1>
           </div>
           <div style={styles.status}>
             <div>{loading ? "Arbetar..." : statusText}</div>
           </div>
         </div>
 
-        {loading ? <div className="tl-loading" style={styles.loadingBanner}>â³ Arbetar â€“ hÃ¤mtar observationer, vÃ¤ntaâ€¦</div> : null}
+        {loading ? <div className="tl-loading" style={styles.loadingBanner}>⏳ Arbetar – hämtar observationer, vänta…</div> : null}
 
         {SpeechRecognitionApi ? (
           <div style={styles.micBar} onClick={startMic}>
-            <span style={{ fontWeight: 700, whiteSpace: "nowrap" }}>{voiceListening ? "ðŸŽ¤ Lyssnar â€“ prata nu" : "ðŸŽ¤ Tryck och prata"}</span>
-            <span style={styles.micHeard}>{lastHeard && lastHeard !== "-" ? `HÃ¶rde: "${lastHeard}"` : 'SÃ¤g t.ex. "Rapport Tid"'}</span>
+            <span style={{ fontWeight: 700, whiteSpace: "nowrap" }}>{voiceListening ? "🎤 Lyssnar – prata nu" : "🎤 Tryck och prata"}</span>
+            <span style={styles.micHeard}>{lastHeard && lastHeard !== "-" ? `Hörde: "${lastHeard}"` : 'Säg t.ex. "Rapport Tid"'}</span>
           </div>
         ) : (
-          <div style={styles.micBar}>RÃ¶ststyrning stÃ¶ds inte i denna webblÃ¤sare (prova Chrome).</div>
+          <div style={styles.micBar}>Röststyrning stöds inte i denna webbläsare (prova Chrome).</div>
         )}
 
         <div style={styles.columns}>
@@ -1364,7 +1364,7 @@ export default function TrollslandeApp() {
               <div style={{ display: "grid", gridTemplateColumns: "64px 1fr", gap: 8, alignItems: "center" }}>
                 <div style={{ fontSize: 13, fontWeight: 700 }}>Art</div>
                 <select value={selectedSpecies} onChange={(e) => setSelectedSpecies(e.target.value)} style={styles.select}>
-                  <option value="">VÃ¤lj art</option>
+                  <option value="">Välj art</option>
                   {speciesOptions.map((species) => <option key={species} value={species}>{species}</option>)}
                 </select>
               </div>
@@ -1374,14 +1374,14 @@ export default function TrollslandeApp() {
               <div style={{ display: "grid", gridTemplateColumns: "74px 1fr", gap: 8, alignItems: "center", marginBottom: 6 }}>
                 <div style={{ fontSize: 13, fontWeight: 700 }}>Landskap</div>
                 <select value="" onChange={(e) => addLandscape(e.target.value)} style={styles.select} disabled={landscapeDisabled}>
-                  <option value="">VÃ¤lj landskap</option>
+                  <option value="">Välj landskap</option>
                   {landscapeOptions.map((name) => <option key={name} value={name}>{name}</option>)}
                 </select>
               </div>
               <div style={{ display: "grid", gridTemplateColumns: "74px 1fr", gap: 8, alignItems: "center" }}>
                 <div style={{ fontSize: 13, fontWeight: 700 }}>Kommun</div>
                 <select value="" onChange={(e) => addMunicipality(e.target.value)} style={styles.select} disabled={municipalityDisabled}>
-                  <option value="">VÃ¤lj kommun</option>
+                  <option value="">Välj kommun</option>
                   {municipalityOptions.map((name) => <option key={name} value={name}>{name}</option>)}
                 </select>
               </div>
@@ -1391,14 +1391,14 @@ export default function TrollslandeApp() {
             <SelectedBox title="Valda kommuner" items={selectedMunicipalities} onRemove={(item) => removeItem(item, selectedMunicipalities, setSelectedMunicipalities)} emptyText="Inga kommuner valda" />
 
             <div style={styles.section}>
-              <div style={styles.label}>ObservatÃ¶r</div>
+              <div style={styles.label}>Observatör</div>
               <input value={observerFilter} onChange={(e) => setObserverFilter(e.target.value)} placeholder="Skriv hela eller del av namn" style={styles.input} />
             </div>
 
             <div style={styles.section}>
               <div style={styles.yearRow}>
                 <div>
-                  <div style={{ fontSize: 13, fontWeight: 700, marginBottom: 4 }}>Tid frÃ¥n</div>
+                  <div style={{ fontSize: 13, fontWeight: 700, marginBottom: 4 }}>Tid från</div>
                   <select value={fromYear} onChange={(e) => setFromYear(e.target.value)} style={styles.select}>{yearOptions.map((y) => <option key={y} value={y}>{y}</option>)}</select>
                 </div>
                 <div>
@@ -1406,7 +1406,7 @@ export default function TrollslandeApp() {
                   <select value={toYear} onChange={(e) => setToYear(e.target.value)} style={styles.select}>{yearOptions.map((y) => <option key={y} value={y}>{y}</option>)}</select>
                 </div>
                 <div>
-                  <div style={{ fontSize: 13, fontWeight: 700, marginBottom: 4 }}>MÃ¥nad</div>
+                  <div style={{ fontSize: 13, fontWeight: 700, marginBottom: 4 }}>Månad</div>
                   <select value={month} onChange={(e) => setMonth(e.target.value)} style={styles.select}>{monthOptions.map((m) => <option key={m.value} value={m.value}>{m.label}</option>)}</select>
                 </div>
               </div>
@@ -1417,7 +1417,7 @@ export default function TrollslandeApp() {
               <div style={styles.rowButtonsTop}>
                 <button onClick={() => runView("lista", "Lista", buildCurrentConfig())} style={styles.primaryButton}>Lista</button>
                 <button onClick={() => runView("tid", "Tid", buildCurrentConfig())} style={styles.primaryButton}>Tid</button>
-                <button onClick={() => runView("graf", "Tid per Ã¥r", buildCurrentConfig())} disabled={fromYear === toYear} style={fromYear === toYear ? { ...styles.primaryButton, ...styles.disabledButton } : styles.primaryButton}>Tid per Ã¥r</button>
+                <button onClick={() => runView("graf", "Tid per år", buildCurrentConfig())} disabled={fromYear === toYear} style={fromYear === toYear ? { ...styles.primaryButton, ...styles.disabledButton } : styles.primaryButton}>Tid per år</button>
               </div>
               <div style={styles.rowButtonsBottom}>
                 <button onClick={() => runView("landskap", "Landskap", buildCurrentConfig())} disabled={!landscapeGraphEnabled} style={!landscapeGraphEnabled ? { ...styles.secondaryButton, ...styles.disabledButton } : styles.secondaryButton}>Landskap</button>
@@ -1433,24 +1433,24 @@ export default function TrollslandeApp() {
           ) : (
           <div style={styles.rightCard}>
             <div style={styles.reportHeader}>
-              <button onClick={goBack} style={styles.backButton}>â† BakÃ¥t</button>
+              <button onClick={goBack} style={styles.backButton}>← Bakåt</button>
               <div style={styles.reportTitleWrap}>
                 <div style={{ fontSize: 18, fontWeight: 700 }}>{viewModeLabel}</div>
                 <div style={{ fontSize: 12, color: "#475569" }}>{resultCount} rader</div>
               </div>
               <button onClick={() => (exportIsExcel ? exportToExcel() : exportToPdf())} disabled={!currentReportHasContent} style={exportStyle}>{exportLabel}</button>
             </div>
-            <div style={styles.dataCredit}>Data hÃ¤mtas ur Artportalens databas frÃ¥n SLU Artdatabanken</div>
-            {isPortrait ? <div style={styles.rotateHint}>ðŸ”„ Vrid telefonen i sidled fÃ¶r bÃ¤sta vy</div> : null}
+            <div style={styles.dataCredit}>Data hämtas ur Artportalens databas från SLU Artdatabanken</div>
+            {isPortrait ? <div style={styles.rotateHint}>🔄 Vrid telefonen i sidled för bästa vy</div> : null}
 
             <div ref={reportRef} style={{ background: "#ffffff", borderRadius: 14 }}>
             {viewMode === "lista" ? (
               <div style={styles.tableWrap}>
                 <div style={{ ...styles.scrollArea, maxHeight: dynamicScrollMaxHeight }}>
-                  {results.length === 0 ? <div style={styles.empty}>Ingen lista skapad Ã¤nnu.</div> : (
+                  {results.length === 0 ? <div style={styles.empty}>Ingen lista skapad ännu.</div> : (
                     <table style={styles.table}>
-                      <thead><tr>{columns.map((column) => <th key={column.key} style={{ ...styles.th, width: column.width }} onClick={() => handleSort(column.key)}>{column.label}{sortField === column.key ? (sortDirection === "asc" ? " â–²" : " â–¼") : ""}</th>)}</tr></thead>
-                      <tbody>{results.map((row) => <tr key={row.occurrenceId || `${row.species}-${row.date}-${row.municipality}-${row.locality}`}>{columns.map((column) => <td key={column.key} style={{ ...styles.td, width: column.width }} title={speciesAwareCell(row, column.key) || ""}>{speciesAwareCell(row, column.key) || "â€”"}</td>)}</tr>)}</tbody>
+                      <thead><tr>{columns.map((column) => <th key={column.key} style={{ ...styles.th, width: column.width }} onClick={() => handleSort(column.key)}>{column.label}{sortField === column.key ? (sortDirection === "asc" ? " ▲" : " ▼") : ""}</th>)}</tr></thead>
+                      <tbody>{results.map((row) => <tr key={row.occurrenceId || `${row.species}-${row.date}-${row.municipality}-${row.locality}`}>{columns.map((column) => <td key={column.key} style={{ ...styles.td, width: column.width }} title={speciesAwareCell(row, column.key) || ""}>{speciesAwareCell(row, column.key) || "—"}</td>)}</tr>)}</tbody>
                     </table>
                   )}
                 </div>
@@ -1458,20 +1458,20 @@ export default function TrollslandeApp() {
             ) : viewMode === "fenologi" ? (
               <div style={styles.tableWrap}>
                 <div style={{ ...styles.scrollArea, maxHeight: dynamicScrollMaxHeight }}>
-                  {phenologyResults.length === 0 ? <div style={styles.empty}>Ingen fenologirapport skapad Ã¤nnu.</div> : (
+                  {phenologyResults.length === 0 ? <div style={styles.empty}>Ingen fenologirapport skapad ännu.</div> : (
                     <table style={styles.table}>
                       <thead><tr>{columns.map((column) => <th key={column.key} style={{ ...styles.th, width: column.width }}>{column.label}</th>)}</tr></thead>
                       <tbody>
                         <tr><td colSpan={columns.length} style={styles.phenologyMarkerCell}>Tidigast</td></tr>
                         {phenologyResults.filter((row) => row.__phenologySection === "tidigast").map((row) => (
                           <tr key={row.occurrenceId || `${row.species}-${row.date}-${row.municipality}-${row.locality}-tidigast`}>
-                            {columns.map((column) => <td key={column.key} style={{ ...styles.td, width: column.width }} title={speciesAwareCell(row, column.key) || ""}>{speciesAwareCell(row, column.key) || "â€”"}</td>)}
+                            {columns.map((column) => <td key={column.key} style={{ ...styles.td, width: column.width }} title={speciesAwareCell(row, column.key) || ""}>{speciesAwareCell(row, column.key) || "—"}</td>)}
                           </tr>
                         ))}
                         <tr><td colSpan={columns.length} style={styles.phenologyMarkerCell}>Senast</td></tr>
                         {phenologyResults.filter((row) => row.__phenologySection === "senast").map((row) => (
                           <tr key={row.occurrenceId || `${row.species}-${row.date}-${row.municipality}-${row.locality}-senast`}>
-                            {columns.map((column) => <td key={column.key} style={{ ...styles.td, width: column.width }} title={speciesAwareCell(row, column.key) || ""}>{speciesAwareCell(row, column.key) || "â€”"}</td>)}
+                            {columns.map((column) => <td key={column.key} style={{ ...styles.td, width: column.width }} title={speciesAwareCell(row, column.key) || ""}>{speciesAwareCell(row, column.key) || "—"}</td>)}
                           </tr>
                         ))}
                       </tbody>
@@ -1481,7 +1481,7 @@ export default function TrollslandeApp() {
               </div>
             ) : viewMode === "graf" || viewMode === "tid" ? (
               <div style={styles.chartWrap}>
-                {activeChartBlocks.length === 0 ? <div style={styles.empty}>Ingen graf skapad Ã¤nnu.</div> : (
+                {activeChartBlocks.length === 0 ? <div style={styles.empty}>Ingen graf skapad ännu.</div> : (
                   <svg viewBox={`0 0 ${chartWidth} ${chartHeight}`} style={styles.chartSvg}>
                     <line x1={chartLeft} y1={chartTop} x2={chartLeft} y2={chartHeight - chartBottom} stroke="#666" strokeWidth="1" />
                     <line x1={chartLeft} y1={chartHeight - chartBottom} x2={chartWidth - 10} y2={chartHeight - chartBottom} stroke="#666" strokeWidth="1" />
@@ -1511,7 +1511,7 @@ export default function TrollslandeApp() {
               </div>
             ) : viewMode === "landskap" || viewMode === "kommun" || viewMode === "arter" ? (
               <div style={styles.chartWrap}>
-                {horizontalSeries.length === 0 ? <div style={styles.empty}>Ingen graf skapad Ã¤nnu.</div> : (
+                {horizontalSeries.length === 0 ? <div style={styles.empty}>Ingen graf skapad ännu.</div> : (
                   <svg viewBox={`0 0 ${horizontalChartWidth} ${horizontalChartHeight}`} style={styles.chartSvg}>
                     {horizontalSeries.map((item, index) => {
                       const y = horizontalTop + index * 30;
@@ -1523,7 +1523,7 @@ export default function TrollslandeApp() {
               </div>
             ) : (
               <div style={styles.mapWrap}>
-                {mapPoints.length === 0 ? <div style={styles.empty}>Ingen karta skapad Ã¤nnu.</div> : (
+                {mapPoints.length === 0 ? <div style={styles.empty}>Ingen karta skapad ännu.</div> : (
                   <MapContainer center={mapCenter} zoom={6} scrollWheelZoom={true} preferCanvas={true} style={{ height: `${dynamicMapHeight}px`, width: "100%" }}>
                     <MapViewportController targetBounds={mapTargetBounds} viewportToken={mapViewportToken} mapRefExternal={mapRef} />
                     <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" attribution="&copy; OpenStreetMap" crossOrigin="anonymous" />
@@ -1534,7 +1534,7 @@ export default function TrollslandeApp() {
                           <div>{row.date}</div>
                           <div>{row.locality}</div>
                           <div>{row.municipality}, {row.province}</div>
-                          <div>ObservatÃ¶r: {row.recordedBy}</div>
+                          <div>Observatör: {row.recordedBy}</div>
                         </Popup>
                       </CircleMarker>
                     ))}
